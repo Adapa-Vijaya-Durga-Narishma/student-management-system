@@ -1,0 +1,41 @@
+
+<div *ngIf="students.length > 0">
+    <h2>Student Information</h2>
+  
+    <label for="assessmentTypeSelect">Select Assessment Type: </label>
+    <select id="assessmentTypeSelect" [(ngModel)]="selectedAssessmentType">
+      <option value="quarterly">Quarterly</option>
+      <option value="halfyearly">Half-Yearly</option>
+      <option value="annually">Annually</option>
+    </select>
+  
+    <table class="student-table">
+      <thead>
+        <tr>
+          <th>Roll Number</th>
+          <th>Name</th>
+          <th>Section</th>
+          <th>Assessment Type</th>
+          <th>Physics Marks</th>
+          <th>Chemistry Marks</th>
+          <th>Social Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; let i = index">
+          <ng-container *ngIf="student.assessments[0]?.type === selectedAssessmentType || selectedAssessmentType === 'All'">
+            <td>{{ student.rollnumber }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.section }}</td>
+            <td>{{ student.assessments[0]?.type || 'N/A' }}</td>
+            <td>{{ student.assessments[0]?.marks?.physics || 'N/A' }}</td>
+            <td>{{ student.assessments[0]?.marks?.chemistry || 'N/A' }}</td>
+            <td>{{ student.assessments[0]?.marks?.social || 'N/A' }}</td>
+          </ng-container>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  

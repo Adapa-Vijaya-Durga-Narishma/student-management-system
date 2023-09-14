@@ -1,0 +1,51 @@
+<div class="student-form-container">
+  <h2>Student Information Form</h2>
+  <form (submit)="saveStudentData()" class="student-form">
+    <div class="form-group">
+      <label for="rollnumber">Roll Number:</label>
+      <input type="text" id="rollnumber" [(ngModel)]="student.rollnumber" name="rollnumber" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="student.name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="section">Section:</label>
+      <input type="text" id="section" [(ngModel)]="student.section" name="section" required>
+    </div>
+
+    <button type="button" class="add-assessment-button" (click)="addAssessment()">Add Assessment</button>
+
+    <div *ngFor="let assessment of student.assessments; let i = index" class="assessment-section">
+      <h3>Assessment {{ i + 1 }}</h3>
+      
+      <div class="form-group">
+        <label for="assessmentType">Assessment Type:</label>
+        <select [(ngModel)]="assessment.type" name="assessmentType">
+          <option value="quarterly">Quarterly</option>
+          <option value="halfyearly">Half-Yearly</option>
+          <option value="annually">Annually</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="physicsMarks">Physics Marks:</label>
+        <input type="number" [(ngModel)]="assessment.marks.physics" name="physicsMarks" required>
+      </div>
+
+      <div class="form-group">
+        <label for="chemistryMarks">Chemistry Marks:</label>
+        <input type="number" [(ngModel)]="assessment.marks.chemistry" name="chemistryMarks" required>
+      </div>
+
+      <div class="form-group">
+        <label for="socialMarks">Social Marks:</label>
+        <input type="number" [(ngModel)]="assessment.marks.social" name="socialMarks" required>
+      </div>
+    </div>
+
+    <button type="submit" class="save-button">Save</button>
+  </form>
+</div>
